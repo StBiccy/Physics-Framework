@@ -539,7 +539,7 @@ HRESULT DX11PhysicsFramework::InitRunTimeData()
 	gameObject->GetMesh()->SetTextureRV(_StoneTextureRV);
 	_gameObjects.push_back(gameObject);
 
-	_gameObjects[3]->GetPhysicsModel()->SetVelocity(XMFLOAT3(0, 20, 0));
+	_gameObjects[3]->GetPhysicsModel()->SetVelocity(XMFLOAT3(0, 1, 0));
 
 	return S_OK;
 }
@@ -589,18 +589,6 @@ DX11PhysicsFramework::~DX11PhysicsFramework()
 
 void DX11PhysicsFramework::Update()
 {
-	_Timer->Tick();
-
-	////Static initializes this value only once    
-	//static ULONGLONG frameStart = GetTickCount64();
-
-	//ULONGLONG frameNow = GetTickCount64();
-	//float deltaTime = (frameNow - frameStart) / 1000.0f;
-	//frameStart = frameNow;
-
-	//static float simpleCount = 0.0f;
-	//simpleCount += deltaTime;
-
 
 	string string;
 
@@ -648,6 +636,9 @@ void DX11PhysicsFramework::Update()
 	{
 		gameObject->Update(_Timer->GetDeltaTime());
 	}
+
+	_Timer->Tick();
+
 }
 
 void DX11PhysicsFramework::Draw()

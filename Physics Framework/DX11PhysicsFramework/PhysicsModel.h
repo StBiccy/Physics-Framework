@@ -13,5 +13,6 @@ public:
 	void Update(float deltaTime);
 	XMFLOAT3 GetVelocity() { return _velocity; }
 	void SetVelocity(XMFLOAT3 velocity) { _velocity = velocity; }
+
 };
 
