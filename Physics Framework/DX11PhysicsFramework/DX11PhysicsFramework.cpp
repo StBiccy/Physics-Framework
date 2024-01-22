@@ -209,8 +209,8 @@ HRESULT DX11PhysicsFramework::InitShadersAndInputLayout()
 
 	ID3DBlob* vsBlob;
 
-    // Compile the vertex shader
-    hr = D3DCompileFromFile(L"SimpleShaders.hlsl", nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE, "VS_main", "vs_5_0", dwShaderFlags, 0, &vsBlob, &errorBlob);
+	// Compile the vertex shader
+	hr = D3DCompileFromFile(L"SimpleShaders.hlsl", nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE, "VS_main", "vs_5_0", dwShaderFlags, 0, &vsBlob, &errorBlob);
 	if (FAILED(hr))
 	{
 		MessageBoxA(_windowHandle, (char*)errorBlob->GetBufferPointer(), nullptr, ERROR);
@@ -222,9 +222,9 @@ HRESULT DX11PhysicsFramework::InitShadersAndInputLayout()
 	hr = _device->CreateVertexShader(vsBlob->GetBufferPointer(), vsBlob->GetBufferSize(), nullptr, &_vertexShader);
 
 	if (FAILED(hr))
-	{	
+	{
 		vsBlob->Release();
-        return hr;
+		return hr;
 	}
 
 	// Compile the pixel shader
@@ -240,20 +240,20 @@ HRESULT DX11PhysicsFramework::InitShadersAndInputLayout()
 	// Create the pixel shader
 	hr = _device->CreatePixelShader(psBlob->GetBufferPointer(), psBlob->GetBufferSize(), nullptr, &_pixelShader);
 
-    if (FAILED(hr))
-        return hr;
-	
-    // Define the input layout
-    D3D11_INPUT_ELEMENT_DESC inputElementDesc[] =
-    {
-        { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+	if (FAILED(hr))
+		return hr;
+
+	// Define the input layout
+	D3D11_INPUT_ELEMENT_DESC inputElementDesc[] =
+	{
+		{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
 		{ "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 },
 		{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 24, D3D11_INPUT_PER_VERTEX_DATA, 0 },
 	};
 
-    // Create the input layout
+	// Create the input layout
 	hr = _device->CreateInputLayout(inputElementDesc, ARRAYSIZE(inputElementDesc), vsBlob->GetBufferPointer(), vsBlob->GetBufferSize(), &_inputLayout);
-	
+
 	vsBlob->Release();
 	psBlob->Release();
 	errorBlob->Release();
@@ -265,9 +265,9 @@ HRESULT DX11PhysicsFramework::InitVertexIndexBuffers()
 {
 	HRESULT hr;
 
-    // Create vertex buffer
-    SimpleVertex vertices[] =
-    {
+	// Create vertex buffer
+	SimpleVertex vertices[] =
+	{
 		{ XMFLOAT3(-1.0f, 1.0f, -1.0f), XMFLOAT3(0, 1.0f, 0), XMFLOAT2(1.0f, 0.0f) },
 		{ XMFLOAT3(1.0f, 1.0f, -1.0f), XMFLOAT3(0, 1.0f, 0), XMFLOAT2(0.0f, 0.0f) },
 		{ XMFLOAT3(1.0f, 1.0f, 1.0f), XMFLOAT3(0, 1.0f, 0), XMFLOAT2(0.0f, 1.0f) },
@@ -297,23 +297,23 @@ HRESULT DX11PhysicsFramework::InitVertexIndexBuffers()
 		{ XMFLOAT3(1.0f, -1.0f, 1.0f), XMFLOAT3(0, 0, 1.0f), XMFLOAT2(0.0f, 1.0f) },
 		{ XMFLOAT3(1.0f, 1.0f, 1.0f), XMFLOAT3(0, 0, 1.0f), XMFLOAT2(0.0f, 0.0f) },
 		{ XMFLOAT3(-1.0f, 1.0f, 1.0f), XMFLOAT3(0, 0, 1.0f), XMFLOAT2(1.0f, 0.0f) },
-    };
+	};
 
-    D3D11_BUFFER_DESC bd;
+	D3D11_BUFFER_DESC bd;
 	ZeroMemory(&bd, sizeof(bd));
-    bd.Usage = D3D11_USAGE_DEFAULT;
-    bd.ByteWidth = sizeof(SimpleVertex) * 24;
-    bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+	bd.Usage = D3D11_USAGE_DEFAULT;
+	bd.ByteWidth = sizeof(SimpleVertex) * 24;
+	bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 	bd.CPUAccessFlags = 0;
 
-    D3D11_SUBRESOURCE_DATA InitData;
+	D3D11_SUBRESOURCE_DATA InitData;
 	ZeroMemory(&InitData, sizeof(InitData));
-    InitData.pSysMem = vertices;
+	InitData.pSysMem = vertices;
 
-    hr = _device->CreateBuffer(&bd, &InitData, &_cubeVertexBuffer);
+	hr = _device->CreateBuffer(&bd, &InitData, &_cubeVertexBuffer);
 
-    if (FAILED(hr))
-        return hr;
+	if (FAILED(hr))
+		return hr;
 
 	// Create index buffer
 	WORD indices[] =
@@ -444,12 +444,14 @@ HRESULT DX11PhysicsFramework::InitPipelineStates()
 	hr = _device->CreateSamplerState(&bilinearSamplerdesc, &_samplerLinear);
 	if (FAILED(hr)) return hr;
 
-    return S_OK;
+	return S_OK;
 }
 
 HRESULT DX11PhysicsFramework::InitRunTimeData()
 {
 	HRESULT hr = S_OK;
+
+	_Timer = new Timer();
 
 	D3D11_BUFFER_DESC constantBufferDesc = {};
 	constantBufferDesc.ByteWidth = sizeof(ConstantBuffer);
@@ -514,28 +516,30 @@ HRESULT DX11PhysicsFramework::InitRunTimeData()
 	noSpecMaterial.specular = XMFLOAT4(0.0f, 0.0f, 0.0f, 0.0f);
 
 	GameObject* gameObject = new GameObject("Floor", planeGeometry, noSpecMaterial);
-	gameObject->SetPosition(0.0f, 0.0f, 0.0f);
-	gameObject->SetScale(15.0f, 15.0f, 15.0f);
-	gameObject->SetRotation(XMConvertToRadians(90.0f), 0.0f, 0.0f);
-	gameObject->SetTextureRV(_GroundTextureRV);
+	gameObject->GetTransform()->SetPosition(0.0f, 0.0f, 0.0f);
+	gameObject->GetTransform()->SetScale(15.0f, 15.0f, 15.0f);
+	gameObject->GetTransform()->SetRotation(XMConvertToRadians(90.0f), 0.0f, 0.0f);
+	gameObject->GetMesh()->SetTextureRV(_GroundTextureRV);
 
 	_gameObjects.push_back(gameObject);
 
 	for (auto i = 0; i < 4; i++)
 	{
 		gameObject = new GameObject("Cube " + i, cubeGeometry, shinyMaterial);
-		gameObject->SetScale(1.0f, 1.0f, 1.0f);
-		gameObject->SetPosition(-2.0f + (i * 2.5f), 1.0f, 10.0f);
-		gameObject->SetTextureRV(_StoneTextureRV);
+		gameObject->GetTransform()->SetScale(1.0f, 1.0f, 1.0f);
+		gameObject->GetTransform()->SetPosition(-2.0f + (i * 2.5f), 1.0f, 10.0f);
+		gameObject->GetMesh()->SetTextureRV(_StoneTextureRV);
 
 		_gameObjects.push_back(gameObject);
 	}
 
 	gameObject = new GameObject("Donut", herculesGeometry, shinyMaterial);
-	gameObject->SetScale(1.0f, 1.0f, 1.0f);
-	gameObject->SetPosition(-5.0f, 0.5f, 10.0f);
-	gameObject->SetTextureRV(_StoneTextureRV);
+	gameObject->GetTransform()->SetScale(1.0f, 1.0f, 1.0f);
+	gameObject->GetTransform()->SetPosition(-5.0f, 0.5f, 10.0f);
+	gameObject->GetMesh()->SetTextureRV(_StoneTextureRV);
 	_gameObjects.push_back(gameObject);
+
+	_gameObjects[3]->GetPhysicsModel()->SetVelocity(XMFLOAT3(0, 20, 0));
 
 	return S_OK;
 }
@@ -547,6 +551,8 @@ DX11PhysicsFramework::~DX11PhysicsFramework()
 	{
 		delete go;
 	}
+
+	if (_Timer != nullptr) delete _Timer;
 
 	if (_immediateContext)_immediateContext->Release();
 
@@ -583,32 +589,46 @@ DX11PhysicsFramework::~DX11PhysicsFramework()
 
 void DX11PhysicsFramework::Update()
 {
-	//Static initializes this value only once    
-	static ULONGLONG frameStart = GetTickCount64();
+	_Timer->Tick();
 
-	ULONGLONG frameNow = GetTickCount64();
-	float deltaTime = (frameNow - frameStart) / 1000.0f;
-	frameStart = frameNow;
+	////Static initializes this value only once    
+	//static ULONGLONG frameStart = GetTickCount64();
 
-	static float simpleCount = 0.0f;
-	simpleCount += deltaTime;
+	//ULONGLONG frameNow = GetTickCount64();
+	//float deltaTime = (frameNow - frameStart) / 1000.0f;
+	//frameStart = frameNow;
+
+	//static float simpleCount = 0.0f;
+	//simpleCount += deltaTime;
+
+
+	string string;
+
+	_accumulator += _Timer->GetDeltaTime();
+
+	//fixed update
+	while (_accumulator >= FPS60)
+	{
+		DebugPrintF("deltaTime is %f \n the number is %i \n", _accumulator, 2);
+		_accumulator -= FPS60;
+	}
 
 	// Move gameobjects
 	if (GetAsyncKeyState('1'))
 	{
-		_gameObjects[1]->Move(XMFLOAT3(0, 0, -0.02f));
+		_gameObjects[1]->GetTransform()->Move(XMFLOAT3(0, 0, -0.02f));
 	}
 	if (GetAsyncKeyState('2'))
 	{
-		_gameObjects[1]->Move(XMFLOAT3(0, 0, 0.02f));
+		_gameObjects[1]->GetTransform()->Move(XMFLOAT3(0, 0, 0.02f));
 	}
 	if (GetAsyncKeyState('3'))
 	{
-		_gameObjects[2]->Move(XMFLOAT3(0, 0, -0.02f));
+		_gameObjects[2]->GetTransform()->Move(XMFLOAT3(0, 0, -0.02f));
 	}
 	if (GetAsyncKeyState('4'))
 	{
-		_gameObjects[2]->Move(XMFLOAT3(0, 0, 0.02f));
+		_gameObjects[2]->GetTransform()->Move(XMFLOAT3(0, 0, 0.02f));
 	}
 	// Update camera
 	float angleAroundZ = XMConvertToRadians(_cameraOrbitAngleXZ);
@@ -626,23 +646,23 @@ void DX11PhysicsFramework::Update()
 	// Update objects
 	for (auto gameObject : _gameObjects)
 	{
-		gameObject->Update(deltaTime);
+		gameObject->Update(_Timer->GetDeltaTime());
 	}
 }
 
 void DX11PhysicsFramework::Draw()
 {
-    //
-    // Clear buffers
-    //
+	//
+	// Clear buffers
+	//
 	float ClearColor[4] = { 0.25f, 0.25f, 0.75f, 1.0f }; // red,green,blue,alpha
 	_immediateContext->OMSetRenderTargets(1, &_frameBufferView, _depthBufferView);
-    _immediateContext->ClearRenderTargetView(_frameBufferView, ClearColor);
+	_immediateContext->ClearRenderTargetView(_frameBufferView, ClearColor);
 	_immediateContext->ClearDepthStencilView(_depthBufferView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
-    //
-    // Setup buffers and render scene
-    //
+	//
+	// Setup buffers and render scene
+	//
 	_immediateContext->VSSetShader(_vertexShader, nullptr, 0);
 	_immediateContext->PSSetShader(_pixelShader, nullptr, 0);
 
@@ -658,7 +678,7 @@ void DX11PhysicsFramework::Draw()
 
 	_cbData.View = XMMatrixTranspose(view);
 	_cbData.Projection = XMMatrixTranspose(projection);
-	
+
 	_cbData.light = basicLight;
 	_cbData.EyePosW = _camera->GetPosition();
 
@@ -666,7 +686,7 @@ void DX11PhysicsFramework::Draw()
 	for (auto gameObject : _gameObjects)
 	{
 		// Get render material
-		Material material = gameObject->GetMaterial();
+		Material material = gameObject->GetMesh()->GetMaterial();
 
 		// Copy material to shader
 		_cbData.surface.AmbientMtrl = material.ambient;
@@ -674,12 +694,12 @@ void DX11PhysicsFramework::Draw()
 		_cbData.surface.SpecularMtrl = material.specular;
 
 		// Set world matrix
-		_cbData.World = XMMatrixTranspose(gameObject->GetWorldMatrix());
+		_cbData.World = XMMatrixTranspose(gameObject->GetTransform()->GetWorldMatrix());
 
 		// Set texture
-		if (gameObject->HasTexture())
+		if (gameObject->GetMesh()->HasTexture())
 		{
-			_immediateContext->PSSetShaderResources(0, 1, gameObject->GetTextureRV());
+			_immediateContext->PSSetShaderResources(0, 1, gameObject->GetMesh()->GetTextureRV());
 			_cbData.HasTexture = 1.0f;
 		}
 		else
@@ -697,8 +717,8 @@ void DX11PhysicsFramework::Draw()
 		gameObject->Draw(_immediateContext);
 	}
 
-    //
-    // Present our back buffer to our front buffer
-    //
-    _swapChain->Present(0, 0);
+	//
+	// Present our back buffer to our front buffer
+	//
+	_swapChain->Present(0, 0);
 }

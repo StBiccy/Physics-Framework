@@ -27,6 +27,11 @@
     <ClInclude Include="DDSTextureLoader.h">
       <Filter>Helpers</Filter>
     </ClInclude>
+    <ClInclude Include="Transform.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Timer.h" />
+    <ClInclude Include="PhysicsModel.h" />
+    <ClInclude Include="Debug.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DX11PhysicsFramework.cpp" />
@@ -39,6 +44,10 @@
     <ClCompile Include="DDSTextureLoader.cpp">
       <Filter>Helpers</Filter>
     </ClCompile>
+    <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="PhysicsModel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">

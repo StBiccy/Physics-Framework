@@ -15,7 +15,12 @@
 
 #include "GameObject.h"
 
+#include "Timer.h"
+#include "Debug.h"
+
 using namespace DirectX;
+
+#define FPS60 1.0f/60.0f
 
 class DX11PhysicsFramework
 {
@@ -58,7 +63,7 @@ private:
 	MeshData _objMeshData;
 	vector<GameObject*> _gameObjects;
 
-	Camera * _camera = nullptr;
+	Camera* _camera = nullptr;
 	float _cameraOrbitRadius = 7.0f;
 	float _cameraOrbitRadiusMin = 2.0f;
 	float _cameraOrbitRadiusMax = 50.0f;
@@ -72,6 +77,9 @@ private:
 
 	ID3D11RasterizerState* _CCWcullMode; //Counter Clockwise
 	ID3D11RasterizerState* _CWcullMode; //Clockwise
+
+	Timer* _Timer;
+	float _accumulator = 0.0f; //time count for fixed update
 
 private:
 	HRESULT CreateWindowHandle(HINSTANCE hInstance, int nCmdShow);
