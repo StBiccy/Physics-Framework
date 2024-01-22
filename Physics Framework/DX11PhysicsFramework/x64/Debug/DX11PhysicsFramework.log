@@ -1,9 +1,2 @@
-﻿  DX11PhysicsFramework.cpp
-C:\Users\a018366m.STUDENT.000\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\DX11PhysicsFramework.cpp(84,75): warning C4100: 'nCmdShow': unreferenced formal parameter
-  GameObject.cpp
-C:\Users\a018366m.STUDENT.000\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\GameObject.cpp(25,40): warning C4238: nonstandard extension used: class rvalue used as lvalue
-  Main.cpp
-C:\Users\a018366m.STUDENT.000\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Debug.h(16,12): warning C4505: 'DebugPrintF': unreferenced function with internal linkage has been removed
-  PhysicsModel.cpp
-  Generating Code...
+﻿  PhysicsModel.cpp
   DX11PhysicsFramework.vcxproj -> C:\Users\a018366m.STUDENT.000\Documents\GitHub\Physics-Framework\Physics Framework\x64\Debug\DX11PhysicsFramework.exe
