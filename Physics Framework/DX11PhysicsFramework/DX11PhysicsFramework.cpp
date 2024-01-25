@@ -539,8 +539,6 @@ HRESULT DX11PhysicsFramework::InitRunTimeData()
 	gameObject->GetMesh()->SetTextureRV(_StoneTextureRV);
 	_gameObjects.push_back(gameObject);
 
-	_gameObjects[3]->GetPhysicsModel()->SetAcceleration(XMFLOAT3(0, 1, 0));
-
 	return S_OK;
 }
 

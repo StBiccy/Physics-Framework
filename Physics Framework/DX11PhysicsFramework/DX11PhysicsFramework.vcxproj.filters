@@ -32,6 +32,7 @@
     <ClInclude Include="Timer.h" />
     <ClInclude Include="PhysicsModel.h" />
     <ClInclude Include="Debug.h" />
+    <ClInclude Include="ParticleModel.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DX11PhysicsFramework.cpp" />
@@ -48,6 +49,7 @@
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="PhysicsModel.cpp" />
+    <ClCompile Include="ParticleModel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">

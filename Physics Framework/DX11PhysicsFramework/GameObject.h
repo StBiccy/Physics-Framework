@@ -21,7 +21,7 @@ public:
 
 	Transform* GetTransform() { return _transform; }
 	Mesh* GetMesh() { return _mesh; }
-	PhysicsModel* GetPhysicsModel() { return _pm; }
+
 
 	void Update(float dt);
 	void Draw(ID3D11DeviceContext* pImmediateContext);
@@ -29,7 +29,7 @@ public:
 private:
 	Transform* _transform;
 	Mesh* _mesh;
-	PhysicsModel* _pm;
+
 	GameObject* _parent = nullptr;
 
 	string _type;

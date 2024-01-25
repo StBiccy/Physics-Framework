@@ -5,7 +5,7 @@ GameObject::GameObject(string type, Geometry geometry, Material material) : _typ
 	_parent = nullptr;
 	_transform = new Transform();
 	_mesh = new Mesh(geometry, material);
-	_pm = new PhysicsModel(_transform);
+	
 }
 
 GameObject::~GameObject()
@@ -19,7 +19,6 @@ void GameObject::Update(float dt)
 {
 	_transform->Update(dt);
 	_mesh->Update(dt);
-	_pm->Update(dt);
 	if (_parent != nullptr)
 	{
 		XMStoreFloat4x4(&_transform->GetWorld(), _transform->GetWorldMatrix() * _parent->_transform->GetWorldMatrix());
