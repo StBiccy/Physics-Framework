@@ -2,9 +2,9 @@
 
 Transform::Transform()
 {
-	_position = XMFLOAT3();
-	_rotation = XMFLOAT3();
-	_scale = XMFLOAT3(1.0f, 1.0f, 1.0f);
+	_position = Vector3();
+	_rotation = Vector3();
+	_scale = Vector3(1.0f, 1.0f, 1.0f);
 }
 
 Transform::~Transform()
@@ -21,7 +21,7 @@ void Transform::Update(float dt)
 	XMStoreFloat4x4(&_world, scale * rotation * translation);
 }
 
-void Transform::Move(XMFLOAT3 direction)
+void Transform::Move(Vector3 direction)
 {
 	_position.x += direction.x;
 	_position.y += direction.y;

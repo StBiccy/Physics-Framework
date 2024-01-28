@@ -33,6 +33,7 @@
     <ClInclude Include="PhysicsModel.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="ParticleModel.h" />
+    <ClInclude Include="Vector3.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DX11PhysicsFramework.cpp" />

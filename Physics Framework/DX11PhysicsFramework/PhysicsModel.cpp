@@ -7,15 +7,16 @@ PhysicsModel::PhysicsModel(Transform* transform)
 
 void PhysicsModel::Update(float deltaTime)
 {
-	XMFLOAT3 position = _transfrom->GetPosition();
+	Vector3 position = _transfrom->GetPosition();
 
-	XMStoreFloat3(&_Acceleration, XMLoadFloat3(&_Acceleration) + (XMLoadFloat3(&_netForce) / _mass));
+	_Acceleration += _netForce / _mass;
+	_velocity += _Acceleration * deltaTime;
 
-	XMStoreFloat3(&_velocity, XMLoadFloat3(&_velocity) + XMLoadFloat3(&_Acceleration) * deltaTime);
-	XMStoreFloat3(&position, XMLoadFloat3(&position) + (XMLoadFloat3(&_velocity) * deltaTime));
+	position = _velocity * deltaTime;
+	
 
-	_Acceleration = XMFLOAT3(0, 0, 0);
-	_netForce = XMFLOAT3(0, 0, 0);
+	_Acceleration = Vector3();
+	_netForce = Vector3();
 
 	_transfrom->SetPosition(position);
 }

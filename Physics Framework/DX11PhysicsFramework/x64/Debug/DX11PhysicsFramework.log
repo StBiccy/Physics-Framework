@@ -1,2 +1,14 @@
-﻿  PhysicsModel.cpp
-  DX11PhysicsFramework.vcxproj -> C:\Users\a018366m.STUDENT.000\Documents\GitHub\Physics-Framework\Physics Framework\x64\Debug\DX11PhysicsFramework.exe
+﻿  DX11PhysicsFramework.cpp
+C:\Users\Bobbic\School Work\Year 2\Physics-Framework\Physics Framework\DX11PhysicsFramework\DX11PhysicsFramework.cpp(84,75): warning C4100: 'nCmdShow': unreferenced formal parameter
+C:\Users\Bobbic\School Work\Year 2\Physics-Framework\Physics Framework\DX11PhysicsFramework\DX11PhysicsFramework.cpp(441,31): warning C4305: '=': truncation from 'int' to 'FLOAT'
+  Main.cpp
+C:\Users\Bobbic\School Work\Year 2\Physics-Framework\Physics Framework\DX11PhysicsFramework\Debug.h(16,12): warning C4505: 'DebugPrintF': unreferenced function with internal linkage has been removed
+  GameObject.cpp
+C:\Users\Bobbic\School Work\Year 2\Physics-Framework\Physics Framework\DX11PhysicsFramework\GameObject.cpp(24,40): warning C4238: nonstandard extension used: class rvalue used as lvalue
+  ParticleModel.cpp
+  PhysicsModel.cpp
+  Timer.cpp
+  Transform.cpp
+C:\Users\Bobbic\School Work\Year 2\Physics-Framework\Physics Framework\DX11PhysicsFramework\Transform.cpp(14,30): warning C4100: 'dt': unreferenced formal parameter
+  Generating Code...
+  DX11PhysicsFramework.vcxproj -> C:\Users\Bobbic\School Work\Year 2\Physics-Framework\Physics Framework\x64\Debug\DX11PhysicsFramework.exe

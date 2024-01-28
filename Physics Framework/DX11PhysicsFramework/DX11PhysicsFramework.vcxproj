@@ -402,6 +402,7 @@
     <ClInclude Include="Structures.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Transform.h" />
+    <ClInclude Include="Vector3.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\floor.dds" />
