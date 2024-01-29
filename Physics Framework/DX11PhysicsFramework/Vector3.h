@@ -80,9 +80,33 @@ struct Vector3
 		{	return Vector3(val.x, val.y, val.z);	}
 #pragma endregion
 
+
+
+};
+
+namespace Vmath
+{
 	static Vector3 pow3(Vector3 val, int Pow)
 	{
 		return Vector3(pow(val.x, Pow), pow(val.y, Pow), pow(val.z, Pow));
 	}
 
-};
+	static float Magnitude(Vector3 val)
+	{
+		if (val == Vector3::Zero())
+		{
+			return 0;
+		}
+		return sqrt(pow(val.x, 2) + pow(val.y, 2) + pow(val.z, 2));
+	}
+
+	static Vector3 Normalise(Vector3 val)
+	{
+		if (val == Vector3::Zero())
+		{
+			return Vector3::Zero();
+		}
+
+		return val / Magnitude(val);
+	}
+}
