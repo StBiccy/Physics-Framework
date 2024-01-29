@@ -2,8 +2,8 @@
 
 Transform::Transform()
 {
-	_position = Vector3();
-	_rotation = Vector3();
+	_position = Vector3::Zero();
+	_rotation = Vector3::Zero();
 	_scale = Vector3(1.0f, 1.0f, 1.0f);
 }
 

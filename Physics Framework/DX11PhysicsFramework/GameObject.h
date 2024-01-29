@@ -21,6 +21,7 @@ public:
 
 	Transform* GetTransform() { return _transform; }
 	Mesh* GetMesh() { return _mesh; }
+	PhysicsModel* GetPhysics() { return _pm; }
 
 
 	void Update(float dt);
@@ -31,7 +32,7 @@ private:
 	Mesh* _mesh;
 
 	GameObject* _parent = nullptr;
-
+	PhysicsModel* _pm;
 	string _type;
 
 

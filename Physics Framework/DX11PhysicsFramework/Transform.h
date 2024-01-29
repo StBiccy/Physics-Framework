@@ -6,9 +6,9 @@
 class Transform
 {
 private:
-	Vector3 _position;
-	Vector3 _scale;
-	Vector3 _rotation;
+	Vector3 _position = Vector3::Zero();
+	Vector3 _scale = Vector3::Zero();
+	Vector3 _rotation = Vector3::Zero();
 
 	XMFLOAT4X4 _world;
 public:

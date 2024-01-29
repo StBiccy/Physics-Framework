@@ -602,7 +602,8 @@ void DX11PhysicsFramework::Update()
 	// Move gameobjects
 	if (GetAsyncKeyState('1'))
 	{
-		_gameObjects[1]->GetTransform()->Move(Vector3(0, 0, -0.02f));
+		_gameObjects[1]->GetPhysics()->addForce(Vector3(0, 0, -1.0f));
+		/*_gameObjects[1]->GetTransform()->Move(Vector3(0, 0, -0.02f));*/
 	}
 	if (GetAsyncKeyState('2'))
 	{

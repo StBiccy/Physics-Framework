@@ -1,6 +1,6 @@
 #pragma once
 #include <directxmath.h>
-
+#include <math.h>
 using namespace DirectX;
 
 struct Vector3
@@ -14,11 +14,9 @@ struct Vector3
 		z = Z;
 	};
 	
-	Vector3()
+	static Vector3 Zero()
 	{
-		x = 0.0f;
-		y = 0.0f;
-		z = 0.0f;
+		return Vector3(0, 0, 0);
 	}
 #pragma region +
 
@@ -82,5 +80,9 @@ struct Vector3
 		{	return Vector3(val.x, val.y, val.z);	}
 #pragma endregion
 
+	static Vector3 pow3(Vector3 val, int Pow)
+	{
+		return Vector3(pow(val.x, Pow), pow(val.y, Pow), pow(val.z, Pow));
+	}
 
 };
