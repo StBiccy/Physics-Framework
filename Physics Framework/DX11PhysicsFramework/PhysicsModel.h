@@ -15,11 +15,14 @@ protected:
 
 	bool _simGravity = false;
 	bool _simFriction = false;
-	bool _simDrag = false;
+	bool _simDrag = true;
 	//drag
 	float _density = 1.225f;
-	float _dragCoefficient = 0.5f;
+	float _dragCoefficient = 1.05f;
 	float _refrenceArea = 1.0f;
+	//friction
+	float _staticCoeff = 0.5f;
+	float _keneticCoeff = 0.5f;
 
 public:
 	PhysicsModel(Transform* transform);
@@ -33,9 +36,20 @@ public:
 	void addForce(Vector3 force) { _netForce += force; }
 	Vector3 GravityForce() { return -Vector3(0, _gravity * _mass, 0); }
 
+	Vector3 FrictionForce()
+	{
+		if (Vmath::Magnitude(_netForce) < Vmath::Magnitude( Vmath::Normalise(_netForce) * _staticCoeff))
+		{
+		_netForce = Vector3::Zero();
+		}
+		
+		return -Vmath::Normalise(_velocity) * _keneticCoeff;
+	}
+
 	Vector3 DragForce() { 
-		float scalerDrag = 0.5 * _density * _dragCoefficient * _refrenceArea;
-		return Vmath::pow3(_velocity,2) * -scalerDrag;
+		float scalerDrag =  0.5f * _density * _dragCoefficient * _refrenceArea;
+		return -Vmath::Normalise(_velocity) * scalerDrag;
+		//return Vmath::pow3(_velocity,2) *  scalerDrag;
 	}
 };
 

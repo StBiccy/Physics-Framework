@@ -1,11 +1,36 @@
 ﻿  DX11PhysicsFramework.cpp
-C:\Users\Bobbic\School Work\Year 2\Physics-Framework\Physics Framework\DX11PhysicsFramework\DX11PhysicsFramework.cpp(84,75): warning C4100: 'nCmdShow': unreferenced formal parameter
-C:\Users\Bobbic\School Work\Year 2\Physics-Framework\Physics Framework\DX11PhysicsFramework\DX11PhysicsFramework.cpp(441,31): warning C4305: '=': truncation from 'int' to 'FLOAT'
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(91,55): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(91,38): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(91,21): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(100,14): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\DX11PhysicsFramework.cpp(84,75): warning C4100: 'nCmdShow': unreferenced formal parameter
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(89,17): warning C4505: 'Vmath::pow3': unreferenced function with internal linkage has been removed
   GameObject.cpp
-C:\Users\Bobbic\School Work\Year 2\Physics-Framework\Physics Framework\DX11PhysicsFramework\GameObject.cpp(25,40): warning C4238: nonstandard extension used: class rvalue used as lvalue
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(91,55): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(91,38): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(91,21): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(100,14): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\GameObject.cpp(25,40): warning C4238: nonstandard extension used: class rvalue used as lvalue
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(89,17): warning C4505: 'Vmath::pow3': unreferenced function with internal linkage has been removed
   Main.cpp
-C:\Users\Bobbic\School Work\Year 2\Physics-Framework\Physics Framework\DX11PhysicsFramework\Debug.h(16,12): warning C4505: 'DebugPrintF': unreferenced function with internal linkage has been removed
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(91,55): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(91,38): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(91,21): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(100,14): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(89,17): warning C4505: 'Vmath::pow3': unreferenced function with internal linkage has been removed
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Debug.h(16,12): warning C4505: 'DebugPrintF': unreferenced function with internal linkage has been removed
   ParticleModel.cpp
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(91,55): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(91,38): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(91,21): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(100,14): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\ParticleModel.cpp(3,77): warning C4100: 'pertubation': unreferenced formal parameter
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(89,17): warning C4505: 'Vmath::pow3': unreferenced function with internal linkage has been removed
   PhysicsModel.cpp
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(91,55): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(91,38): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(91,21): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(100,14): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(89,17): warning C4505: 'Vmath::pow3': unreferenced function with internal linkage has been removed
   Generating Code...
-  DX11PhysicsFramework.vcxproj -> C:\Users\Bobbic\School Work\Year 2\Physics-Framework\Physics Framework\x64\Debug\DX11PhysicsFramework.exe
+  DX11PhysicsFramework.vcxproj -> C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\x64\Debug\DX11PhysicsFramework.exe

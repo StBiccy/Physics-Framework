@@ -49,13 +49,13 @@ struct Vector3
 #pragma endregion
 
 #pragma region *
-		template <typename t> const
+		template <typename t> 
 		Vector3 operator *(const t val) const
 		{	return Vector3(x * static_cast<float>(val), y * static_cast<float>(val), z * static_cast<float>(val));	}
 
 		template <typename t> const
 		Vector3 operator *= (const t val) const
-		{	return Vector3(x *= static_cast<float>(val), y *= static_cast<float>(val), z *= static_cast<float>(val));		}
+		{	return Vector3(x *= static_cast<float>(val), y *= static_cast<float>(val), z *= static_cast<float>(val));	}
 #pragma endregion
 
 #pragma region bool

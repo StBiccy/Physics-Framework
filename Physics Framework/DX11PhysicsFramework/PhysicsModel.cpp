@@ -13,6 +13,14 @@ void PhysicsModel::Update(float deltaTime)
 	{
 		_netForce += GravityForce();
 	}
+	if (_simDrag)
+	{
+		_netForce += DragForce();
+	}
+	if (_simFriction)
+	{
+		_netForce += FrictionForce();
+	}
 
 	_Acceleration += _netForce / _mass;
 	_velocity += _Acceleration * deltaTime;
