@@ -77,6 +77,9 @@ struct Vector3
 #pragma region XMFLOAT
 		operator XMFLOAT3 () const
 	{	return XMFLOAT3(x, y, z);	}
+
+		Vector3 operator = (const XMFLOAT3& val) const
+		{	return Vector3(val.x, val.y, val.z);	}
 #pragma endregion
 
 
