@@ -33,7 +33,8 @@ public:
 	void SetAcceleration(Vector3 acceleration) { _Acceleration = acceleration; }
 	Vector3 GetAcceleration() { return _Acceleration; }
 
-	void addForce(Vector3 force) { _netForce += force; }
+	void AddForce(Vector3 force) { _netForce += force; }
+
 	Vector3 GravityForce() { return -Vector3(0, _gravity * _mass, 0); }
 
 	Vector3 FrictionForce()

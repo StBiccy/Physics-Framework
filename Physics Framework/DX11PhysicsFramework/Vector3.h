@@ -52,7 +52,7 @@ struct Vector3
 		template <typename t> 
 		Vector3 operator *(const t val) const
 		{	return Vector3(x * static_cast<float>(val), y * static_cast<float>(val), z * static_cast<float>(val));	}
-
+		
 		template <typename t> const
 		Vector3 operator *= (const t val) const
 		{	return Vector3(x *= static_cast<float>(val), y *= static_cast<float>(val), z *= static_cast<float>(val));	}

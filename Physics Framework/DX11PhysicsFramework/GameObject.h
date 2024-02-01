@@ -3,7 +3,7 @@
 #include <string>
 #include "Transform.h"
 #include "Mesh.h"
-#include "PhysicsModel.h"
+#include "RigidBody.h"
 
 using namespace std;
 
@@ -21,7 +21,7 @@ public:
 
 	Transform* GetTransform() { return _transform; }
 	Mesh* GetMesh() { return _mesh; }
-	PhysicsModel* GetPhysics() { return _pm; }
+	RigidBody* GetRigidBody() { return _RigidBody; }
 
 
 	void Update(float dt);
@@ -32,7 +32,7 @@ private:
 	Mesh* _mesh;
 
 	GameObject* _parent = nullptr;
-	PhysicsModel* _pm;
+	RigidBody* _RigidBody;
 	string _type;
 
 
