@@ -86,10 +86,6 @@ struct Vector3
 
 namespace Vmath
 {
-	static Vector3 pow3(Vector3 val, int Pow)
-	{
-		return Vector3(pow(val.x, Pow), pow(val.y, Pow), pow(val.z, Pow));
-	}
 
 	static float Magnitude(Vector3 val)
 	{

@@ -1,11 +1,15 @@
 #pragma once
 #include "Transform.h"
+#include "Collider.h"
 
 class PhysicsModel
 {
 protected:
 
 	Transform* _transfrom;
+
+	Collider* _collider = nullptr;
+
 	Vector3 _velocity = Vector3::Zero();
 	Vector3 _Acceleration = Vector3::Zero();
 
@@ -26,7 +30,9 @@ protected:
 
 public:
 	PhysicsModel(Transform* transform);
+	~PhysicsModel();
 	virtual void Update(float deltaTime);
+
 	Vector3 GetVelocity() { return _velocity; }
 	void SetVelocity(Vector3 velocity) { _velocity = velocity; }
 
@@ -52,5 +58,10 @@ public:
 		return -Vmath::Normalise(_velocity) * scalerDrag;
 		//return Vmath::pow3(_velocity,2) *  scalerDrag;
 	}
+
+	bool IsCollidable() const { return _collider != nullptr; }
+	Collider* GetCollider() const { return _collider; }
+	void SetCollider(Collider* collider) { _collider = collider; }
+
 };
 

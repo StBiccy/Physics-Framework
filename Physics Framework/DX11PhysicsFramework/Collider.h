@@ -1,5 +1,8 @@
 #pragma once
 #include "Transform.h"
+
+class SphereCollider;
+
 class Collider abstract
 {
 protected:

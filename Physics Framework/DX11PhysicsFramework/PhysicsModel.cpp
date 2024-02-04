@@ -5,6 +5,14 @@ PhysicsModel::PhysicsModel(Transform* transform)
 	_transfrom = transform;
 }
 
+PhysicsModel::~PhysicsModel()
+{
+	if (_collider != nullptr)
+	{
+		delete _collider;
+	}
+}
+
 void PhysicsModel::Update(float deltaTime)
 {
 	Vector3 position = _transfrom->GetPosition();
