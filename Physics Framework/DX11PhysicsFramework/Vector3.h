@@ -105,4 +105,9 @@ namespace Vmath
 
 		return val / Magnitude(val);
 	}
+
+	static float Dot(Vector3 left, Vector3 right)
+	{
+		return left.x * right.x + left.y * right.y + left.z * right.z;
+	}
 }

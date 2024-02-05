@@ -1,6 +1,6 @@
 #pragma once
 #include "Transform.h"
-#include "Collider.h"
+#include "SphereCollider.h"
 
 class PhysicsModel
 {
@@ -18,8 +18,8 @@ protected:
 	float _gravity = 9.81f;
 
 	bool _simGravity = false;
-	bool _simFriction = false;
-	bool _simDrag = true;
+	bool _simFriction = true;
+	bool _simDrag = false;
 	//drag
 	float _density = 1.225f;
 	float _dragCoefficient = 1.05f;
@@ -33,31 +33,18 @@ public:
 	~PhysicsModel();
 	virtual void Update(float deltaTime);
 
-	Vector3 GetVelocity() { return _velocity; }
+	Vector3 GetVelocity() const		{ return _velocity; }
 	void SetVelocity(Vector3 velocity) { _velocity = velocity; }
 
 	void SetAcceleration(Vector3 acceleration) { _Acceleration = acceleration; }
 	Vector3 GetAcceleration() { return _Acceleration; }
 
 	void AddForce(Vector3 force) { _netForce += force; }
+	void ApplyImpulse(Vector3 impulse) { _velocity += impulse; }
 
 	Vector3 GravityForce() { return -Vector3(0, _gravity * _mass, 0); }
-
-	Vector3 FrictionForce()
-	{
-		if (Vmath::Magnitude(_netForce) < Vmath::Magnitude( Vmath::Normalise(_netForce) * _staticCoeff))
-		{
-		_netForce = Vector3::Zero();
-		}
-		
-		return -Vmath::Normalise(_velocity) * _keneticCoeff;
-	}
-
-	Vector3 DragForce() { 
-		float scalerDrag =  0.5f * _density * _dragCoefficient * _refrenceArea;
-		return -Vmath::Normalise(_velocity) * scalerDrag;
-		//return Vmath::pow3(_velocity,2) *  scalerDrag;
-	}
+	Vector3 FrictionForce();
+	Vector3 DragForce();
 
 	bool IsCollidable() const { return _collider != nullptr; }
 	Collider* GetCollider() const { return _collider; }

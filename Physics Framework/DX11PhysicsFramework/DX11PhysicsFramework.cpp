@@ -539,7 +539,10 @@ HRESULT DX11PhysicsFramework::InitRunTimeData()
 	gameObject->GetMesh()->SetTextureRV(_StoneTextureRV);
 	_gameObjects.push_back(gameObject);
 
+	//SphereCollider* temp = new SphereCollider(_gameObjects[1]->GetTransform(), 1.0f);
+
 	_gameObjects[1]->GetRigidBody()->SetCollider(new SphereCollider(_gameObjects[1]->GetTransform(), 1.0f));
+
 	_gameObjects[2]->GetRigidBody()->SetCollider(new SphereCollider(_gameObjects[2]->GetTransform(), 1.0f));
 
 	return S_OK;
@@ -605,11 +608,11 @@ void DX11PhysicsFramework::Update()
 	// Move gameobjects
 	if (GetAsyncKeyState('1'))
 	{
-		_gameObjects[1]->GetRigidBody()->AddForce(Vector3(0, 0, -1.0f));
+		_gameObjects[1]->GetRigidBody()->AddForce(Vector3(-2.0f, 0, 0));
 	}
 	if (GetAsyncKeyState('2'))
 	{
-		_gameObjects[1]->GetTransform()->Move(Vector3(0, 0, 0.02f));
+		_gameObjects[1]->GetRigidBody()->AddForce(Vector3(2.0f, 0, 0));
 	}
 	if (GetAsyncKeyState('3'))
 	{
@@ -622,8 +625,16 @@ void DX11PhysicsFramework::Update()
 
 	if (_gameObjects[1]->GetRigidBody()->IsCollidable() && _gameObjects[2]->GetRigidBody()->IsCollidable())
 	{
-		_gameObjects[1]->GetRigidBody()->GetCollider()->CollidesWith(*_gameObjects[2]->GetRigidBody()->GetCollider());
-		DebugPrintF("collison");
+		if (_gameObjects[1]->GetRigidBody()->GetCollider()->CollidesWith(*_gameObjects[2]->GetRigidBody()->GetCollider()))
+		{
+			Vector3 colisionNormal = Vmath::Normalise(_gameObjects[1]->GetTransform()->GetPosition() - _gameObjects[2]->GetTransform()->GetPosition());
+			Vector3 RelativeVelocity = _gameObjects[1]->GetRigidBody()->GetVelocity() - _gameObjects[2]->GetRigidBody()->GetVelocity();
+
+
+			_gameObjects[1]->GetRigidBody()->ApplyImpulse(Vector3(-1, 0, 0));
+			_gameObjects[2]->GetRigidBody()->ApplyImpulse(Vector3(1, 0, 0));
+			DebugPrintF("collison");
+		}
 	}
 	// Update camera
 	float angleAroundZ = XMConvertToRadians(_cameraOrbitAngleXZ);

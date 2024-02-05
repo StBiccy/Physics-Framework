@@ -36,3 +36,22 @@ void PhysicsModel::Update(float deltaTime)
 
 	_transfrom->SetPosition(position);
 }
+
+
+Vector3 PhysicsModel::FrictionForce()
+{
+	{
+		if (Vmath::Magnitude(_netForce) < Vmath::Magnitude(Vmath::Normalise(_netForce) * _staticCoeff))
+		{
+			_netForce = Vector3::Zero();
+		}
+
+		return -Vmath::Normalise(_velocity) * _keneticCoeff;
+	}
+}
+
+Vector3 PhysicsModel::DragForce()
+{
+	float scalerDrag = 0.5f * _density * _dragCoefficient * _refrenceArea;
+	return -Vmath::Normalise(_velocity) * scalerDrag;
+}
