@@ -12,5 +12,5 @@ public:
 	virtual bool CollidesWith(Collider& other) override { return other.CollidesWith(*this); }
 	virtual bool CollidesWith(SphereCollider& other) override { return _radius + other._radius > Vmath::Magnitude(_transfrom->GetPosition() - other.GetPosition()); };
 
-	float GetRaidus() const { return _radius; }
+	virtual float GetRaidus() override { return _radius; }
 };

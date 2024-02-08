@@ -1,25 +1,4 @@
 ﻿  DX11PhysicsFramework.cpp
 C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(96,14): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
 C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\DX11PhysicsFramework.cpp(84,75): warning C4100: 'nCmdShow': unreferenced formal parameter
-C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(99,17): warning C4505: 'Vmath::Normalise': unreferenced function with internal linkage has been removed
-  GameObject.cpp
-C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(96,14): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\GameObject.cpp(26,40): warning C4238: nonstandard extension used: class rvalue used as lvalue
-C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(99,17): warning C4505: 'Vmath::Normalise': unreferenced function with internal linkage has been removed
-  Main.cpp
-C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(96,14): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(99,17): warning C4505: 'Vmath::Normalise': unreferenced function with internal linkage has been removed
-C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Debug.h(16,12): warning C4505: 'DebugPrintF': unreferenced function with internal linkage has been removed
-  ParticleModel.cpp
-C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(96,14): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\ParticleModel.cpp(3,77): warning C4100: 'pertubation': unreferenced formal parameter
-C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(99,17): warning C4505: 'Vmath::Normalise': unreferenced function with internal linkage has been removed
-  PhysicsModel.cpp
-C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(96,14): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\PhysicsModel.cpp(12,3): warning C5205: delete of an abstract class 'Collider' that has a non-virtual destructor results in undefined behavior
-C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Collider.h(6,7): message : see declaration of 'Collider'
-  RigidBody.cpp
-C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(96,14): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(99,17): warning C4505: 'Vmath::Normalise': unreferenced function with internal linkage has been removed
-  Generating Code...
   DX11PhysicsFramework.vcxproj -> C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\x64\Debug\DX11PhysicsFramework.exe

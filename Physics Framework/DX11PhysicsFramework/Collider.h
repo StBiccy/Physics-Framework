@@ -12,6 +12,7 @@ public:
 
 	virtual bool CollidesWith(Collider& other) = 0;
 	virtual bool CollidesWith(SphereCollider& other) = 0;
+	virtual float GetRaidus() = 0;
 
 	Vector3 GetPosition() const { return _transfrom->GetPosition(); }
 };

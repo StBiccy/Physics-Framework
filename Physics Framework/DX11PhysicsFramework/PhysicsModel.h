@@ -19,7 +19,7 @@ protected:
 
 	bool _simGravity = false;
 	bool _simFriction = true;
-	bool _simDrag = false;
+	bool _simDrag = true;
 	//drag
 	float _density = 1.225f;
 	float _dragCoefficient = 1.05f;
@@ -32,6 +32,8 @@ public:
 	PhysicsModel(Transform* transform);
 	~PhysicsModel();
 	virtual void Update(float deltaTime);
+
+	float GetMass() { return _mass; }
 
 	Vector3 GetVelocity() const		{ return _velocity; }
 	void SetVelocity(Vector3 velocity) { _velocity = velocity; }
