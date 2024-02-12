@@ -5,12 +5,12 @@ class RigidBody : public PhysicsModel
 public:
 	RigidBody(Transform* tf);
 
-	void AddRelativeForce(Vector3 force, Vector3 point) override;
-	void CalculateAngularVelocity();
+	void AddRelativeForce(Vector3 force, Vector3 point, float deltaTime) override;
+	void CalculateAngularVelocity(float deltaTime);
 
 	void Update(float deltaTime);
 private:
-	float _angularDampening = 0.99f;
+	float _angularDampening = 0.5f;
 
 	Vector3 _torque;
 	Vector3 _angularVelocity;

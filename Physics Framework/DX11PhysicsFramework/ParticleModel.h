@@ -8,7 +8,7 @@ public:
 
 	ParticleModel(Transform* transform, float resetTime, Vector3 pertubation, bool invertGravity);
 
-	void AddRelativeForce(Vector3 force, Vector3 point) override { AddForce(force); }
+	void AddRelativeForce(Vector3 force, Vector3 point, float deltaTime) override { AddForce(force); }
 
 	void Update(float deltaTime) override;
 

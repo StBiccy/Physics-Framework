@@ -44,7 +44,7 @@ public:
 	void AddForce(Vector3 force) { _netForce += force; }
 	void ApplyImpulse(Vector3 impulse) { _velocity += impulse; }
 
-	virtual void AddRelativeForce(Vector3 Force, Vector3 point) = 0;;
+	virtual void AddRelativeForce(Vector3 Force, Vector3 point, float deltaTime) = 0;;
 
 	Vector3 GravityForce() { return -Vector3(0, _gravity * _mass, 0); }
 	Vector3 FrictionForce();

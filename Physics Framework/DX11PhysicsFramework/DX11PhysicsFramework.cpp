@@ -539,7 +539,7 @@ HRESULT DX11PhysicsFramework::InitRunTimeData()
 	gameObject->GetMesh()->SetTextureRV(_StoneTextureRV);
 	_gameObjects.push_back(gameObject);
 
-	//SphereCollider* temp = new SphereCollider(_gameObjects[1]->GetTransform(), 1.0f);
+
 
 	_gameObjects[1]->GetRigidBody()->SetCollider(new SphereCollider(_gameObjects[1]->GetTransform(), 1.0f));
 
@@ -623,6 +623,11 @@ void DX11PhysicsFramework::Update()
 		_gameObjects[2]->GetTransform()->Move(Vector3(0, 0, 0.02f));
 	}
 
+	if (GetAsyncKeyState('5'))
+	{
+		_gameObjects[2]->GetRigidBody()->AddRelativeForce(Vector3(0, 0, -1), Vector3(1, 0, -1), _Timer->GetDeltaTime());
+	}
+
 	if (_gameObjects[1]->GetRigidBody()->IsCollidable() && _gameObjects[2]->GetRigidBody()->IsCollidable())
 	{
 		if (_gameObjects[1]->GetRigidBody()->GetCollider()->CollidesWith(*_gameObjects[2]->GetRigidBody()->GetCollider()))
@@ -647,8 +652,8 @@ void DX11PhysicsFramework::Update()
 			_gameObjects[1]->GetTransform()->SetPosition(object1Pos - (colisionNormal * depth * inverseMass1 * inverseMass2));
 			_gameObjects[2]->GetTransform()->SetPosition(object2Pos + (colisionNormal * depth * inverseMass1 * inverseMass2));
 			
-			_gameObjects[1]->GetRigidBody()->ApplyImpulse(colisionNormal * inverseMass1 * j);
-			_gameObjects[2]->GetRigidBody()->ApplyImpulse(-colisionNormal * inverseMass2 * j);
+			_gameObjects[1]->GetRigidBody()->AddRelativeForce(colisionNormal * inverseMass1 * j, -colisionNormal, _Timer->GetDeltaTime());
+			_gameObjects[2]->GetRigidBody()->AddRelativeForce(-colisionNormal * inverseMass2 * j, colisionNormal, _Timer->GetDeltaTime());//is right
 			DebugPrintF("collison");
 		}
 	}
