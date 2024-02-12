@@ -3,9 +3,18 @@
 #include <math.h>
 using namespace DirectX;
 
+float const tol = 0.0001f;
+
 struct Vector3
 {
 	float x, y, z;
+
+	Vector3()
+	{
+		x = 0;
+		y = 0;
+		z = 0;
+	}
 
 	Vector3(float X, float Y, float Z)
 	{
@@ -79,9 +88,20 @@ struct Vector3
 		Vector3 operator = (const XMFLOAT3& val) const
 		{	return Vector3(val.x, val.y, val.z);	}
 #pragma endregion
+		
 
+			operator XMVECTOR () const
+		{
+			return XMLoadFloat3(&XMFLOAT3(x,y,z));
+		}
 
+		Vector3 operator = (const XMVECTOR& val) const
+		{
+			XMFLOAT3 float3;
+			XMStoreFloat3(&float3, val);
 
+			return Vector3(float3.x, float3.y, float3.z);
+		}
 };
 
 namespace Vmath
@@ -109,5 +129,12 @@ namespace Vmath
 	static float Dot(Vector3 left, Vector3 right)
 	{
 		return left.x * right.x + left.y * right.y + left.z * right.z;
+	}
+
+	static Vector3 Cross(Vector3 u, Vector3 v)
+	{
+		return Vector3(u.y * v.z - u.z * v.y,
+			-u.x * v.z + u.z * v.x,
+			u.x * v.y - u.y * v.x);
 	}
 }

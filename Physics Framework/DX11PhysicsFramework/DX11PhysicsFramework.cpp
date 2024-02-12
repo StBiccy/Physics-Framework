@@ -518,7 +518,7 @@ HRESULT DX11PhysicsFramework::InitRunTimeData()
 	GameObject* gameObject = new GameObject("Floor", planeGeometry, noSpecMaterial);
 	gameObject->GetTransform()->SetPosition(0.0f, 0.0f, 0.0f);
 	gameObject->GetTransform()->SetScale(15.0f, 15.0f, 15.0f);
-	gameObject->GetTransform()->SetRotation(XMConvertToRadians(90.0f), 0.0f, 0.0f);
+	gameObject->GetTransform()->SetRotation(90.0f, 0.0f, 0.0f);
 	gameObject->GetMesh()->SetTextureRV(_GroundTextureRV);
 
 	_gameObjects.push_back(gameObject);
@@ -608,11 +608,11 @@ void DX11PhysicsFramework::Update()
 	// Move gameobjects
 	if (GetAsyncKeyState('1'))
 	{
-		_gameObjects[1]->GetRigidBody()->AddForce(Vector3(-2.0f, 0, 0));
+		_gameObjects[1]->GetRigidBody()->AddForce(Vector3(-4.0f, 0, 0));
 	}
 	if (GetAsyncKeyState('2'))
 	{
-		_gameObjects[1]->GetRigidBody()->AddForce(Vector3(2.0f, 0, 0));
+		_gameObjects[1]->GetRigidBody()->AddForce(Vector3(4.0f, 0, 0));
 	}
 	if (GetAsyncKeyState('3'))
 	{
@@ -627,23 +627,28 @@ void DX11PhysicsFramework::Update()
 	{
 		if (_gameObjects[1]->GetRigidBody()->GetCollider()->CollidesWith(*_gameObjects[2]->GetRigidBody()->GetCollider()))
 		{
-			float depth = Vmath::Magnitude(_gameObjects[1]->GetTransform()->GetPosition() - _gameObjects[2]->GetTransform()->GetPosition()) - _gameObjects[1]->GetRigidBody()->GetCollider()->GetRaidus() - _gameObjects[2]->GetRigidBody()->GetCollider()->GetRaidus();
+			Vector3 object1Pos = _gameObjects[1]->GetTransform()->GetPosition();
+			Vector3 object2Pos = _gameObjects[2]->GetTransform()->GetPosition();
 
-			Vector3 colisionNormal = Vmath::Normalise(_gameObjects[1]->GetTransform()->GetPosition() - _gameObjects[2]->GetTransform()->GetPosition()) * depth;
+			float depth = Vmath::Magnitude( object1Pos - object2Pos) - _gameObjects[1]->GetRigidBody()->GetCollider()->GetRaidus() - _gameObjects[2]->GetRigidBody()->GetCollider()->GetRaidus();
+
+			float inverseMass1 = (1.0f / _gameObjects[1]->GetRigidBody()->GetMass());
+			float inverseMass2 = (1.0f / _gameObjects[2]->GetRigidBody()->GetMass());
+
+			Vector3 colisionNormal = Vmath::Normalise(object1Pos - object2Pos);
 			Vector3 RelativeVelocity = _gameObjects[1]->GetRigidBody()->GetVelocity() - _gameObjects[2]->GetRigidBody()->GetVelocity();
 
-			float restitution = 1;
+			float restitution = 1.0f;
 
-			float inverseMass1 = (1.0f / _gameObjects[1]->GetRigidBody()->GetMass()) * depth;
-			float inverseMass2 = (1.0f / _gameObjects[2]->GetRigidBody()->GetMass()) * depth;
 
 			float vj = -(1 + restitution) * Vmath::Dot(colisionNormal , RelativeVelocity);
 			float j = vj / ( inverseMass1 + inverseMass2);
 
+			_gameObjects[1]->GetTransform()->SetPosition(object1Pos - (colisionNormal * depth * inverseMass1 * inverseMass2));
+			_gameObjects[2]->GetTransform()->SetPosition(object2Pos + (colisionNormal * depth * inverseMass1 * inverseMass2));
 			
-
 			_gameObjects[1]->GetRigidBody()->ApplyImpulse(colisionNormal * inverseMass1 * j);
-			_gameObjects[2]->GetRigidBody()->ApplyImpulse(-(colisionNormal * inverseMass2 * j));
+			_gameObjects[2]->GetRigidBody()->ApplyImpulse(-colisionNormal * inverseMass2 * j);
 			DebugPrintF("collison");
 		}
 	}

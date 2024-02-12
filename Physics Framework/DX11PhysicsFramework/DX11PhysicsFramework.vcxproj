@@ -400,6 +400,7 @@
     <ClInclude Include="OBJLoader.h" />
     <ClInclude Include="ParticleModel.h" />
     <ClInclude Include="PhysicsModel.h" />
+    <ClInclude Include="Quaternion.h" />
     <CLInclude Include="resource.h" />
     <ClInclude Include="RigidBody.h" />
     <ClInclude Include="SphereCollider.h" />

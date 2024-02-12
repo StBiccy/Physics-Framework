@@ -1,4 +1,7 @@
 ﻿  DX11PhysicsFramework.cpp
-C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(96,14): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\DX11PhysicsFramework.cpp(84,75): warning C4100: 'nCmdShow': unreferenced formal parameter
-  DX11PhysicsFramework.vcxproj -> C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\x64\Debug\DX11PhysicsFramework.exe
+C:\Users\Bobbic\School Work\Year 2\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(105,14): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\Bobbic\School Work\Year 2\Physics-Framework\Physics Framework\DX11PhysicsFramework\Quaternion.h(197,23): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\Bobbic\School Work\Year 2\Physics-Framework\Physics Framework\DX11PhysicsFramework\Quaternion.h(202,25): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\Bobbic\School Work\Year 2\Physics-Framework\Physics Framework\DX11PhysicsFramework\DX11PhysicsFramework.cpp(84,75): warning C4100: 'nCmdShow': unreferenced formal parameter
+C:\Users\Bobbic\School Work\Year 2\Physics-Framework\Physics Framework\DX11PhysicsFramework\DX11PhysicsFramework.cpp(441,31): warning C4305: '=': truncation from 'int' to 'FLOAT'
+  DX11PhysicsFramework.vcxproj -> C:\Users\Bobbic\School Work\Year 2\Physics-Framework\Physics Framework\x64\Debug\DX11PhysicsFramework.exe
