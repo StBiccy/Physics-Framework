@@ -15,6 +15,12 @@ PhysicsModel::~PhysicsModel()
 
 void PhysicsModel::Update(float deltaTime)
 {
+
+	if (_mass == 0)
+	{
+		return;
+	}
+
 	Vector3 position = _transfrom->GetPosition();
 
 	if (_simGravity)

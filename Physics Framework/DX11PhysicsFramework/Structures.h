@@ -1,9 +1,7 @@
 #pragma once
+#include "Quaternion.h"
 #include <cstring>
 #include <d3d11.h>
-#include <directxmath.h>
-
-using namespace DirectX;
 
 struct SurfaceInfo
 {
@@ -55,4 +53,17 @@ struct MeshData
 	UINT VBStride;
 	UINT VBOffset;
 	UINT IndexCount;
+};
+
+struct ContatcPoint
+{
+	Vector3 Position;
+	float penetartiondepth;
+};
+
+struct CollisionManifold 
+{
+	int contactPointCount = 0;
+	ContatcPoint points[4];
+	Vector3 collisionNormal;
 };

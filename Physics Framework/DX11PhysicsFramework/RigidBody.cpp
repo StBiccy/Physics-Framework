@@ -3,6 +3,8 @@
 RigidBody::RigidBody(Transform* tf) : PhysicsModel(tf)
 {
 	XMStoreFloat3x3(&_InertiaTensor, XMMatrixIdentity());
+
+
 }
 
 void RigidBody::AddRelativeForce(Vector3 force, Vector3 point, float deltaTime)
@@ -20,13 +22,21 @@ void RigidBody::CalculateAngularVelocity(float deltaTime)
 	
 }
 
-void RigidBody::Update(float deltaTime)
+void RigidBody::OnSetCollider()
 {
 	if (GetCollider())
 	{
 		_InertiaTensor._11 = 2 / 5 * _mass * pow(GetCollider()->GetRaidus(), 2);
 		_InertiaTensor._22 = 2 / 5 * _mass * pow(GetCollider()->GetRaidus(), 2);
 		_InertiaTensor._33 = 2 / 5 * _mass * pow(GetCollider()->GetRaidus(), 2);
+	}
+}
+
+void RigidBody::Update(float deltaTime)
+{
+	if (_mass == 0)
+	{
+		return;
 	}
 
 	Quaternion orientation = _transfrom->GetOrientation();

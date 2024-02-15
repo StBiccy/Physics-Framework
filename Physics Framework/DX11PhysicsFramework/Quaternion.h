@@ -1,8 +1,9 @@
+#pragma once
 #define _USE_MATH_DEFINES
 
-#pragma once
+//#include <cmath>
 #include "Vector3.h"
-#include <cmath>
+
 //------------------------------------------------------------------------
 // Quaternion Class and Quaternion functions
 //------------------------------------------------------------------------

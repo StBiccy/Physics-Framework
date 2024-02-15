@@ -593,6 +593,8 @@ DX11PhysicsFramework::~DX11PhysicsFramework()
 
 void DX11PhysicsFramework::Update()
 {
+	float deltaTime = _Timer->GetDeltaTime();
+
 
 	string string;
 
@@ -622,41 +624,14 @@ void DX11PhysicsFramework::Update()
 	{
 		_gameObjects[2]->GetTransform()->Move(Vector3(0, 0, 0.02f));
 	}
-
 	if (GetAsyncKeyState('5'))
 	{
 		_gameObjects[2]->GetRigidBody()->AddRelativeForce(Vector3(0, 0, -1), Vector3(1, 0, -1), _Timer->GetDeltaTime());
 	}
 
-	if (_gameObjects[1]->GetRigidBody()->IsCollidable() && _gameObjects[2]->GetRigidBody()->IsCollidable())
-	{
-		if (_gameObjects[1]->GetRigidBody()->GetCollider()->CollidesWith(*_gameObjects[2]->GetRigidBody()->GetCollider()))
-		{
-			Vector3 object1Pos = _gameObjects[1]->GetTransform()->GetPosition();
-			Vector3 object2Pos = _gameObjects[2]->GetTransform()->GetPosition();
-
-			float depth = Vmath::Magnitude( object1Pos - object2Pos) - _gameObjects[1]->GetRigidBody()->GetCollider()->GetRaidus() - _gameObjects[2]->GetRigidBody()->GetCollider()->GetRaidus();
-
-			float inverseMass1 = (1.0f / _gameObjects[1]->GetRigidBody()->GetMass());
-			float inverseMass2 = (1.0f / _gameObjects[2]->GetRigidBody()->GetMass());
-
-			Vector3 colisionNormal = Vmath::Normalise(object1Pos - object2Pos);
-			Vector3 RelativeVelocity = _gameObjects[1]->GetRigidBody()->GetVelocity() - _gameObjects[2]->GetRigidBody()->GetVelocity();
-
-			float restitution = 1.0f;
+	ResolveCollisons();
 
 
-			float vj = -(1 + restitution) * Vmath::Dot(colisionNormal , RelativeVelocity);
-			float j = vj / ( inverseMass1 + inverseMass2);
-
-			_gameObjects[1]->GetTransform()->SetPosition(object1Pos - (colisionNormal * depth * inverseMass1 * inverseMass2));
-			_gameObjects[2]->GetTransform()->SetPosition(object2Pos + (colisionNormal * depth * inverseMass1 * inverseMass2));
-			
-			_gameObjects[1]->GetRigidBody()->AddRelativeForce(colisionNormal * inverseMass1 * j, -colisionNormal, _Timer->GetDeltaTime());
-			_gameObjects[2]->GetRigidBody()->AddRelativeForce(-colisionNormal * inverseMass2 * j, colisionNormal, _Timer->GetDeltaTime());//is right
-			DebugPrintF("collison");
-		}
-	}
 	// Update camera
 	float angleAroundZ = XMConvertToRadians(_cameraOrbitAngleXZ);
 
@@ -678,6 +653,57 @@ void DX11PhysicsFramework::Update()
 
 	_Timer->Tick();
 
+}
+
+void DX11PhysicsFramework::ResolveCollisons()
+{
+	//loop though object a
+	for (int i = 0; i < _gameObjects.size(); ++i)
+	{
+		if (!_gameObjects[i]->GetRigidBody()->IsCollidable())
+		{
+			continue;
+		}
+
+		//loop though object b
+		for (int x = 0; x < _gameObjects.size(); ++x)
+		{
+			if (x == i || !_gameObjects[x]->GetRigidBody()->IsCollidable())
+			{
+				continue;
+			}
+			PhysicsModel* objectA = _gameObjects[i]->GetRigidBody();
+			PhysicsModel* objectB = _gameObjects[x]->GetRigidBody();
+
+			//collision update
+			if (objectA->GetCollider()->CollidesWith(*objectB->GetCollider()))
+			{
+				Transform* objectATransform = _gameObjects[i]->GetTransform();
+				Transform* objectBTransform = _gameObjects[x]->GetTransform();
+				Vector3 object1Pos = objectATransform->GetPosition();
+				Vector3 object2Pos = objectBTransform->GetPosition();
+
+				float depth = Vmath::Magnitude(object1Pos - object2Pos) - _gameObjects[i]->GetRigidBody()->GetCollider()->GetRaidus() - _gameObjects[x]->GetRigidBody()->GetCollider()->GetRaidus();
+
+				float inverseMass1 = objectA->GetInverserMass();
+				float inverseMass2 = objectB->GetInverserMass();
+				float inverseMassSum = inverseMass1 + inverseMass2;
+
+				Vector3 colisionNormal = Vmath::Normalise(object1Pos - object2Pos);
+				Vector3 RelativeVelocity = _gameObjects[i]->GetRigidBody()->GetVelocity() - _gameObjects[x]->GetRigidBody()->GetVelocity();
+
+				float restitution = 1.0f;
+				float vj = -(1 + restitution) * Vmath::Dot(colisionNormal, RelativeVelocity);
+				float j = vj / (inverseMassSum);
+
+				objectATransform->SetPosition(object1Pos - (colisionNormal * depth * inverseMass1 * inverseMass2));
+				objectBTransform->SetPosition(object2Pos + (colisionNormal * depth * inverseMass1 * inverseMass2));
+				objectA->AddRelativeForce(colisionNormal * inverseMass1 * j, -colisionNormal, _Timer->GetDeltaTime());
+				objectB->AddRelativeForce(-colisionNormal * inverseMass2 * j, colisionNormal, _Timer->GetDeltaTime());//is right
+			}
+
+		}
+	}
 }
 
 void DX11PhysicsFramework::Draw()

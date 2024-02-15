@@ -34,6 +34,7 @@ public:
 	virtual void Update(float deltaTime);
 
 	float GetMass() { return _mass; }
+	float GetInverserMass(){ if (_mass == 0) return 0; return 1.0f / _mass; }
 
 	Vector3 GetVelocity() const		{ return _velocity; }
 	void SetVelocity(Vector3 velocity) { _velocity = velocity; }
@@ -52,7 +53,9 @@ public:
 
 	bool IsCollidable() const { return _collider != nullptr; }
 	Collider* GetCollider() const { return _collider; }
-	void SetCollider(Collider* collider) { _collider = collider; }
+	void SetCollider(Collider* collider) { _collider = collider; OnSetCollider(); }
+
+	virtual void OnSetCollider() = 0;
 
 };
 
