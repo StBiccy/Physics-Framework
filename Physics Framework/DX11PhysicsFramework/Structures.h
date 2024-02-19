@@ -58,7 +58,7 @@ struct MeshData
 struct ContatcPoint
 {
 	Vector3 Position;
-	float penetartiondepth;
+	float penetartionDepth;
 };
 
 struct CollisionManifold 

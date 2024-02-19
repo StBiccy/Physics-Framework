@@ -1,7 +1,7 @@
 #pragma once
 #define _USE_MATH_DEFINES
 
-//#include <cmath>
+#include <cmath>
 #include "Vector3.h"
 
 //------------------------------------------------------------------------

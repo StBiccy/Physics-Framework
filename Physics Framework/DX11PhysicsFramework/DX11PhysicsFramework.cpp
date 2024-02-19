@@ -540,10 +540,11 @@ HRESULT DX11PhysicsFramework::InitRunTimeData()
 	_gameObjects.push_back(gameObject);
 
 
+	//_gameObjects[1]->GetRigidBody()->SetCollider(new SphereCollider(_gameObjects[1]->GetTransform(), 1.f));
 
-	_gameObjects[1]->GetRigidBody()->SetCollider(new SphereCollider(_gameObjects[1]->GetTransform(), 1.0f));
+	_gameObjects[1]->GetRigidBody()->SetCollider(new AABBCollider(_gameObjects[1]->GetTransform(),  Vector3(-1,-1,-1), Vector3(1, 1, 1)));
 
-	_gameObjects[2]->GetRigidBody()->SetCollider(new SphereCollider(_gameObjects[2]->GetTransform(), 1.0f));
+	_gameObjects[2]->GetRigidBody()->SetCollider(new AABBCollider(_gameObjects[2]->GetTransform(), Vector3(-1, -1, -1), Vector3(1, 1, 1)));
 
 	return S_OK;
 }
@@ -675,9 +676,13 @@ void DX11PhysicsFramework::ResolveCollisons()
 			PhysicsModel* objectA = _gameObjects[i]->GetRigidBody();
 			PhysicsModel* objectB = _gameObjects[x]->GetRigidBody();
 
+			CollisionManifold manifold;
+
 			//collision update
-			if (objectA->GetCollider()->CollidesWith(*objectB->GetCollider()))
+			if (objectA->GetCollider()->CollidesWith(*objectB->GetCollider(), manifold))
 			{
+				DebugPrintF("collision");
+				continue;
 				Transform* objectATransform = _gameObjects[i]->GetTransform();
 				Transform* objectBTransform = _gameObjects[x]->GetTransform();
 				Vector3 object1Pos = objectATransform->GetPosition();
@@ -689,7 +694,7 @@ void DX11PhysicsFramework::ResolveCollisons()
 				float inverseMass2 = objectB->GetInverserMass();
 				float inverseMassSum = inverseMass1 + inverseMass2;
 
-				Vector3 colisionNormal = Vmath::Normalise(object1Pos - object2Pos);
+				Vector3 colisionNormal = manifold.collisionNormal;
 				Vector3 RelativeVelocity = _gameObjects[i]->GetRigidBody()->GetVelocity() - _gameObjects[x]->GetRigidBody()->GetVelocity();
 
 				float restitution = 1.0f;
@@ -700,6 +705,8 @@ void DX11PhysicsFramework::ResolveCollisons()
 				objectBTransform->SetPosition(object2Pos + (colisionNormal * depth * inverseMass1 * inverseMass2));
 				objectA->AddRelativeForce(colisionNormal * inverseMass1 * j, -colisionNormal, _Timer->GetDeltaTime());
 				objectB->AddRelativeForce(-colisionNormal * inverseMass2 * j, colisionNormal, _Timer->GetDeltaTime());//is right
+
+				manifold = CollisionManifold();
 			}
 
 		}
