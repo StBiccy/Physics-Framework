@@ -13,6 +13,7 @@ bool SphereCollider::CollidesWith(SphereCollider& other, CollisionManifold& out)
 
 	if (Vmath::Magnitude(diff) < radiiSum)
 	{
+		out.collisionNormal = diff;
 		out.collisionNormal = Vmath::Normalise(out.collisionNormal);
 		out.contactPointCount = 1;
 		out.points[0].Position = GetPosition() + out.collisionNormal * GetRaidus();

@@ -681,14 +681,11 @@ void DX11PhysicsFramework::ResolveCollisons()
 			//collision update
 			if (objectA->GetCollider()->CollidesWith(*objectB->GetCollider(), manifold))
 			{
-				DebugPrintF("collision");
-				continue;
+
 				Transform* objectATransform = _gameObjects[i]->GetTransform();
 				Transform* objectBTransform = _gameObjects[x]->GetTransform();
 				Vector3 object1Pos = objectATransform->GetPosition();
 				Vector3 object2Pos = objectBTransform->GetPosition();
-
-				float depth = Vmath::Magnitude(object1Pos - object2Pos) - _gameObjects[i]->GetRigidBody()->GetCollider()->GetRaidus() - _gameObjects[x]->GetRigidBody()->GetCollider()->GetRaidus();
 
 				float inverseMass1 = objectA->GetInverserMass();
 				float inverseMass2 = objectB->GetInverserMass();
@@ -701,8 +698,12 @@ void DX11PhysicsFramework::ResolveCollisons()
 				float vj = -(1 + restitution) * Vmath::Dot(colisionNormal, RelativeVelocity);
 				float j = vj / (inverseMassSum);
 
-				objectATransform->SetPosition(object1Pos - (colisionNormal * depth * inverseMass1 * inverseMass2));
-				objectBTransform->SetPosition(object2Pos + (colisionNormal * depth * inverseMass1 * inverseMass2));
+
+				for (int i = 0; i < manifold.contactPointCount; i++)
+				{
+					objectATransform->SetPosition(object1Pos - (colisionNormal * manifold.points[i].penetartionDepth * inverseMass1 * inverseMass2));
+					objectBTransform->SetPosition(object2Pos + (colisionNormal * manifold.points[i].penetartionDepth * inverseMass1 * inverseMass2));
+				}
 				objectA->AddRelativeForce(colisionNormal * inverseMass1 * j, -colisionNormal, _Timer->GetDeltaTime());
 				objectB->AddRelativeForce(-colisionNormal * inverseMass2 * j, colisionNormal, _Timer->GetDeltaTime());//is right
 

@@ -3,12 +3,14 @@ C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11Physi
 C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(116,14): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
 C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Quaternion.h(198,23): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
 C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Quaternion.h(203,25): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\AABBCollider.cpp(19,69): warning C4100: 'out': unreferenced formal parameter
-C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\AABBCollider.cpp(19,43): warning C4100: 'other': unreferenced formal parameter
 C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\AABBCollider.cpp(24,75): warning C4100: 'out': unreferenced formal parameter
 C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\AABBCollider.cpp(24,49): warning C4100: 'other': unreferenced formal parameter
-C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\AABBCollider.cpp(29,73): warning C4100: 'out': unreferenced formal parameter
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\AABBCollider.cpp(48,56): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\AABBCollider.cpp(55,56): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\AABBCollider.cpp(63,52): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\AABBCollider.cpp(70,52): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(119,17): warning C4505: 'Vmath::Normalise': unreferenced function with internal linkage has been removed
 C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(129,15): warning C4505: 'Vmath::Dot': unreferenced function with internal linkage has been removed
 C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\Vector3.h(134,17): warning C4505: 'Vmath::Cross': unreferenced function with internal linkage has been removed
+C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\DX11PhysicsFramework\AABBCollider.cpp(75): warning C4702: unreachable code
   DX11PhysicsFramework.vcxproj -> C:\Users\a018366m\Documents\GitHub\Physics-Framework\Physics Framework\x64\Debug\DX11PhysicsFramework.exe
