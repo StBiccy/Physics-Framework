@@ -4,19 +4,21 @@
 
 class SphereCollider;
 class AABBCollider;
+class OBBCollider;
+
 
 class Collider abstract
 {
 protected:
-	Transform* _transfrom;
+	Transform* transform;
 public:
-	Collider(Transform* tf) { _transfrom = tf; }
+	Collider(Transform* tf) { transform = tf; }
 
 	virtual bool CollidesWith(Collider& other , CollisionManifold& out) = 0;
 	virtual bool CollidesWith(SphereCollider& other, CollisionManifold& out) = 0;
 	virtual bool CollidesWith(AABBCollider& other, CollisionManifold& out) = 0;
-	virtual float GetRaidus() = 0;
+	virtual bool CollidesWith(OBBCollider& other, CollisionManifold& out) = 0;
 
-	Vector3 GetPosition() const { return _transfrom->GetPosition(); }
+	Vector3 GetPosition() const { return transform->GetPosition(); }
 };
 

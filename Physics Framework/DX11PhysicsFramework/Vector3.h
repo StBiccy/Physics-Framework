@@ -73,7 +73,7 @@ struct Vector3
 		{	return x == other.x && y == other.y && z == other.z;	}
 
 		bool operator != (Vector3& other) const
-		{	return x != other.x && y != other.y && z != other.z;	}
+		{	return x != other.x || y != other.y || z != other.z;	}
 #pragma endregion
 
 #pragma region negative

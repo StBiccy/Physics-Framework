@@ -23,7 +23,10 @@ public:
     Quaternion operator-=(Quaternion q);
     Quaternion operator*=(float s);
     Quaternion operator/=(float s);
-    Quaternion operator~(void) const;/*ask if this needs to be removed*/
+    Quaternion operator~(void) const;
+    bool operator==(Quaternion q);
+    bool operator!=(Quaternion q);
+
 };
 
 // Default Constructor
@@ -103,6 +106,17 @@ inline Quaternion Quaternion::operator~(void) const
         -v.z);
 }
 
+inline bool Quaternion::operator==(Quaternion q)
+{
+    return n == q.n && v == q.v;
+}
+
+inline bool Quaternion::operator!=(Quaternion q)
+{
+    return n != q.n || v != q.v;
+}
+
+
 inline Quaternion operator+(Quaternion q1, Quaternion q2)
 {
     return Quaternion(q1.n + q2.n,
@@ -140,6 +154,7 @@ inline Quaternion operator*(float s, Quaternion q)
 {
     return Quaternion(q.n * s, q.v.x * s, q.v.y * s, q.v.z * s);
 }
+
 
 inline Quaternion operator*(Quaternion q, Vector3 v)
 {

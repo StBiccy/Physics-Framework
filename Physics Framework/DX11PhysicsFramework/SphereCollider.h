@@ -1,5 +1,7 @@
 #pragma once
 #include "Collider.h"
+#include "AABBCollider.h"
+#include "OBBCollider.h"
 
 class SphereCollider : public Collider
 {
@@ -12,5 +14,6 @@ public:
 	virtual bool CollidesWith(Collider& other, CollisionManifold& out) override;
 	virtual bool CollidesWith(SphereCollider& other, CollisionManifold& out) override;
 	virtual bool CollidesWith(AABBCollider& other, CollisionManifold& out) override;
-	virtual float GetRaidus() override { return _radius; }
+	virtual bool CollidesWith(OBBCollider& other, CollisionManifold& out) override;
+	float GetRaidus() { return _radius; }
 };

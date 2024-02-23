@@ -542,9 +542,9 @@ HRESULT DX11PhysicsFramework::InitRunTimeData()
 
 	//_gameObjects[1]->GetRigidBody()->SetCollider(new SphereCollider(_gameObjects[1]->GetTransform(), 1.f));
 
-	_gameObjects[1]->GetRigidBody()->SetCollider(new AABBCollider(_gameObjects[1]->GetTransform(),  Vector3(-1,-1,-1), Vector3(1, 1, 1)));
+	_gameObjects[1]->GetRigidBody()->SetCollider(new OBBCollider(_gameObjects[1]->GetTransform(), Vector3(1, 1, 1), _gameObjects[1]->GetTransform()->GetOrientation()));
 
-	_gameObjects[2]->GetRigidBody()->SetCollider(new AABBCollider(_gameObjects[2]->GetTransform(), Vector3(-1, -1, -1), Vector3(1, 1, 1)));
+	_gameObjects[2]->GetRigidBody()->SetCollider(new OBBCollider(_gameObjects[2]->GetTransform(), Vector3(1, 1, 1), _gameObjects[2]->GetTransform()->GetOrientation()));
 
 	return S_OK;
 }
